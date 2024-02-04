@@ -1,0 +1,30 @@
+#!/bin/bash
+FIRST=1
+
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+CLEAR='\033[0m'
+
+for i in 0 1
+do
+	FILE=/sys/class/power_supply/BAT${i}/capacity
+	if [ -f $FILE ]; then
+		CAPACITY=$(cat $FILE | tr -d "\n")
+		if [ $CAPACITY -eq 100 ]; then
+			echo -n "$GREEN"
+		elif [ $CAPACITY -lt 96 ]; then
+			echo -n "$RED"
+		elif [ $CAPACITY -lt 16 ]; then
+			echo -n "$YELLOW"
+		fi
+
+		printf "BAT: %3d%%" $CAPACITY
+
+		echo -n "$CLEAR"
+		if [ $FIRST -eq 0 ]; then
+			echo -n " "
+		fi
+		FIRST=0
+	fi
+done
