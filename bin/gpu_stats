@@ -1,0 +1,5 @@
+#!/bin/bash
+echo -n "GPU: "
+nvidia-smi --query-gpu=temperature.gpu,utilization.gpu --format=csv,noheader,nounits | \
+	tr -d ',\n' | \
+	awk '{ printf "%4.1f°C %4.1f%%", $1, $2 }'

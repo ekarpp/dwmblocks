@@ -29,8 +29,10 @@ install: dwmblocks
 	mkdir -p ${DESTDIR}${PREFIX}/bin
 	cp -f dwmblocks ${DESTDIR}${PREFIX}/bin
 	chmod 755 ${DESTDIR}${PREFIX}/bin/dwmblocks
+	for script in bin/*; do cp -f $$script ${DESTDIR}${PREFIX}/bin; chmod 755 ${DESTDIR}${PREFIX}/$$script; done
 
 uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/dwmblocks
+	for script in bin/*; do rm -f ${DESTDIR}${PREFIX}/$$script; done
 
 .PHONY: all options clean install uninstall
