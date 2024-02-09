@@ -1,5 +1,5 @@
 #!/bin/bash
-BACKLIGHT_FOLDER=/sys/devices/pci0000:00/0000:00:02.0/drm/card0/card0-eDP-1/intel_backlight
+BACKLIGHT_FOLDER=/sys/class/backlight/intel_backlight
 
 MAX=$(cat ${BACKLIGHT_FOLDER}/max_brightness | tr -d '\n')
 CURRENT=$(cat ${BACKLIGHT_FOLDER}/brightness | tr -d '\n')
