@@ -1,3 +1,8 @@
 #!/bin/bash
+MASTER=$(amixer sget Master)
 
-amixer sget Master | awk -F "[][]" '/Left:/ { printf "VOL: %3d%%", $2 }'
+if grep -q off <<< $MASTER; then
+	printf "VOL: MUTE"
+else
+	amixer sget Master | awk -F "[][]" '/Left:/ { printf "VOL: %3d%%", $2 }'
+fi
