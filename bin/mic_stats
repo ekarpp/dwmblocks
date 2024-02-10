@@ -1,0 +1,8 @@
+#!/bin/bash
+CAPTURE=$(amixer sget Capture)
+
+if grep -q off <<< $CAPTURE; then
+	printf "MIC: OFF"
+else
+	printf "MIC:  ON"
+fi

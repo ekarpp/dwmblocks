@@ -2,8 +2,9 @@
 static const Block blocks[] = {
         /*Icon*/        /*Command*/             /*Update Interval*/     /*Update Signal*/
 	{"",		"curl -s wttr.in/?format=1 | tr -d '\n'", 1800, 0},
-	{"",		"vol_stats",			10,	0},
-	{"",		"brt_stats",			10,	0},
+	{"",		"mic_stats",			0,	3},
+	{"",		"vol_stats",			0,	2},
+	{"",		"brt_stats",			0,	1},
 	{"",		"bat_stats",			10,	0},
 	{"",		"gpu_stats",			10,	0},
 	{"",		"cpu_stats",                    10,     0},
