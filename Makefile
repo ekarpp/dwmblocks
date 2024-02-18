@@ -2,7 +2,11 @@ PREFIX  := /usr/local
 CC      := cc
 CFLAGS  := -pedantic -Wall -Wno-deprecated-declarations -Os
 LDFLAGS := -lX11
+DEFINE	:=
 
+ifneq (, $(shell which nvidia-smi))
+	DEFINE := ${DEFINE} -DNVIDIA_SMI=1
+endif
 # FreeBSD (uncomment)
 #LDFLAGS += -L/usr/local/lib -I/usr/local/include
 # # OpenBSD (uncomment)
@@ -15,9 +19,10 @@ options:
 	@echo "CFLAGS  = ${CFLAGS}"
 	@echo "LDFLAGS = ${LDFLAGS}"
 	@echo "CC      = ${CC}"
+	@echo "DEFINE  = ${DEFINE}"
 
 dwmblocks: dwmblocks.c blocks.def.h blocks.h
-	${CC} -o dwmblocks dwmblocks.c ${CFLAGS} ${LDFLAGS}
+	${CC} -o dwmblocks dwmblocks.c ${CFLAGS} ${LDFLAGS} ${DEFINE}
 
 blocks.h:
 	cp blocks.def.h $@
